@@ -1,0 +1,115 @@
+.ai-concierge-root { position: fixed; z-index: 1200; right: 24px; bottom: 22px; color: #eef0e7; font-family: Inter, "Segoe UI", Arial, sans-serif; }
+.ai-concierge-launcher { min-height: 52px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 17px; border: 1px solid #d4ff00; border-radius: 999px; background: #d4ff00; box-shadow: 0 10px 35px #0008; color: #10130f; font-size: 11px; font-weight: 850; letter-spacing: .3px; cursor: pointer; transition: transform .18s, box-shadow .18s; }
+.ai-concierge-launcher:hover { transform: translateY(-2px); box-shadow: 0 14px 36px #000a; }
+.ai-concierge-launcher.is-open { width: 48px; min-height: 48px; padding: 0; background: #151a11; color: #d4ff00; }
+.ai-concierge-panel { position: absolute; right: 0; bottom: 66px; width: min(420px, calc(100vw - 32px)); height: min(720px, calc(100dvh - 112px)); min-height: 420px; display: flex; flex-direction: column; overflow: hidden; border: 1px solid #bada08; background: #10130f; box-shadow: 0 22px 80px #000b; }
+.ai-concierge-header { min-height: 67px; display: flex; align-items: center; gap: 11px; padding: 0 16px; border-bottom: 1px solid #ffffff20; background: #0c0f0c; }
+.ai-concierge-brand-icon { width: 35px; height: 35px; display: grid; place-items: center; border: 1px solid #d4ff0040; background: #d4ff0013; color: #d4ff00; }
+.ai-concierge-brand-copy { display: grid; gap: 4px; }
+.ai-concierge-brand-copy strong { color: #f2f4eb; font-size: 10px; letter-spacing: 1.5px; }
+.ai-concierge-brand-copy > span { display: flex; align-items: center; gap: 6px; color: #8c9381; font-size: 8px; font-weight: 750; letter-spacing: 1px; }
+.ai-concierge-brand-copy > span i, .ai-concierge-footer > span i { width: 6px; height: 6px; border-radius: 50%; background: #d4ff00; box-shadow: 0 0 8px #d4ff00; }
+.ai-concierge-close { width: 34px; height: 34px; display: grid; place-items: center; margin-left: auto; border: 1px solid #ffffff28; background: transparent; color: #c9cebf; cursor: pointer; }
+.ai-concierge-transcript { flex: 1; display: flex; flex-direction: column; gap: 12px; overflow-x: hidden; overflow-y: auto; padding: 15px 13px 18px; scrollbar-color: #667625 #171b14; scrollbar-width: thin; }
+.ai-concierge-day-label { align-self: center; margin: 0 0 3px; color: #69705f; font-size: 8px; font-weight: 800; letter-spacing: 1.5px; }
+.ai-concierge-message { max-width: 90%; display: flex; align-items: flex-start; gap: 7px; }
+.ai-concierge-message p { max-width: 100%; margin: 0; padding: 10px 12px; border: 1px solid #ffffff1b; background: #1b2018; color: #dfe3d6; font-size: 11px; line-height: 1.6; overflow-wrap: anywhere; }
+.ai-concierge-message.is-user { align-self: flex-end; justify-content: flex-end; }
+.ai-concierge-message.is-user p { border-color: #d4ff0040; background: #d4ff0013; color: #eff5d6; }
+.ai-concierge-avatar { flex: 0 0 auto; width: 23px; height: 23px; display: grid; place-items: center; border: 1px solid #d4ff0044; color: #d4ff00; }
+.ai-concierge-welcome-actions { display: grid; gap: 8px; margin: 0 0 4px 30px; }
+.ai-concierge-welcome-actions button { min-height: 38px; display: inline-flex; align-items: center; justify-content: space-between; padding: 0 11px; border: 1px solid #d4ff00; background: #d4ff00; color: #10130f; font-size: 10px; font-weight: 850; cursor: pointer; }
+.ai-concierge-welcome-actions span { color: #8f9685; font-size: 9px; line-height: 1.5; }
+.ai-concierge-card { display: grid; gap: 11px; margin-left: 29px; padding: 13px; border: 1px solid #ffffff25; background: #151a12; }
+.ai-concierge-card-heading { display: flex; align-items: center; gap: 8px; color: #d4ff00; }
+.ai-concierge-card-heading strong { color: #eef0e7; font-size: 10px; letter-spacing: .4px; }
+.ai-concierge-card label { display: grid; gap: 5px; color: #c5cabb; font-size: 9px; font-weight: 750; }
+.ai-concierge-card label > span { display: inline; color: #7f8774; font-weight: 500; }
+.ai-concierge-card input, .ai-concierge-card select, .ai-concierge-card textarea { width: 100%; min-height: 35px; padding: 8px 9px; border: 1px solid #ffffff2a; border-radius: 0; background: #0e110d; color: #edf0e7; font: inherit; font-size: 10px; color-scheme: dark; }
+.ai-concierge-card textarea { min-height: 74px; resize: vertical; line-height: 1.5; }
+.ai-concierge-number-grid, .ai-concierge-date-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+.ai-concierge-number-grid label { grid-template-columns: 14px 1fr; align-items: center; }
+.ai-concierge-number-grid label select { grid-column: 1 / -1; }
+.ai-concierge-child-age { margin-left: 23px; }
+.ai-concierge-bed-summary { display: flex; align-items: center; gap: 7px; margin: 0; color: #d4ff00; font-size: 10px; font-weight: 800; }
+.ai-concierge-bed-summary svg { flex: 0 0 auto; }
+.ai-concierge-hint { margin: 0; color: #89907e; font-size: 9px; line-height: 1.55; }
+.ai-concierge-payment-methods { margin: 0; padding: 9px; border: 1px solid #d4ff0030; background: #d4ff0009; color: #c5cabb; font-size: 9px; line-height: 1.55; }
+.ai-concierge-payment-methods strong { color: #d4ff00; }
+.ai-concierge-form-error, .ai-concierge-notice { margin: 0; padding: 8px 9px; border: 1px solid #ef997555; background: #ef997510; color: #f0ad9a; font-size: 9px; line-height: 1.55; }
+.ai-concierge-notice a { margin-left: 4px; color: #d4ff00; text-decoration: underline; }
+.ai-concierge-primary, .ai-concierge-secondary { min-height: 36px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 11px; font-size: 9px; font-weight: 850; letter-spacing: .2px; cursor: pointer; }
+.ai-concierge-primary { border: 1px solid #d4ff00; background: #d4ff00; color: #10130f; }
+.ai-concierge-primary:disabled, .ai-concierge-secondary:disabled { opacity: .55; cursor: wait; }
+.ai-concierge-secondary { border: 1px solid #ffffff38; background: transparent; color: #dce1d2; }
+.ai-concierge-button-row { display: flex; justify-content: flex-end; gap: 8px; }
+.ai-concierge-step-actions { display: flex; justify-content: space-between; gap: 8px; }
+.ai-concierge-step-actions > button:last-child { flex: 1; }
+.ai-concierge-results-previous { justify-self: start; margin-left: 29px; }
+.ai-concierge-filter-group { min-width: 0; margin: 0; padding: 0; border: 0; }
+.ai-concierge-filter-group legend { margin-bottom: 7px; color: #9da492; font-size: 9px; font-weight: 750; }
+.ai-concierge-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.ai-concierge-chips button { min-height: 27px; display: inline-flex; align-items: center; gap: 4px; padding: 0 8px; border: 1px solid #ffffff28; background: #0f120e; color: #bdc3b4; font-size: 8px; cursor: pointer; }
+.ai-concierge-chips button.is-selected { border-color: #d4ff00; background: #d4ff0018; color: #e8ff7b; }
+.ai-concierge-searching, .ai-concierge-checkout-state { display: flex; align-items: center; gap: 9px; margin-left: 29px; padding: 11px; border: 1px solid #d4ff003e; background: #d4ff000d; color: #d6e895; font-size: 10px; }
+.ai-concierge-spinner { animation: ai-concierge-spin 1s linear infinite; }
+@keyframes ai-concierge-spin { to { transform: rotate(360deg); } }
+.ai-concierge-results { display: grid; gap: 10px; }
+.ai-concierge-fallback { margin: 0 0 0 29px; color: #e2d39a; font-size: 9px; line-height: 1.55; }
+.ai-concierge-empty { margin: 0; color: #c5cabb; font-size: 10px; line-height: 1.6; }
+.ai-concierge-hotel-card { overflow: hidden; margin-left: 29px; border: 1px solid #ffffff25; background: #151a12; }
+.ai-concierge-hotel-card > img { width: 100%; height: 125px; display: block; object-fit: cover; background: #23281e; }
+.ai-concierge-hotel-content { display: grid; gap: 7px; padding: 11px; }
+.ai-concierge-hotel-title { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.ai-concierge-hotel-title h3 { margin: 0 0 3px; color: #f1f3eb; font-family: Georgia, "Times New Roman", serif; font-size: 15px; font-weight: 400; }
+.ai-concierge-hotel-title > div > span { color: #969d8a; font-size: 9px; }
+.ai-concierge-stars { color: #d4ff00; font-size: 10px; font-weight: 850; }
+.ai-concierge-hotel-price { margin: 0; color: #d4ff00; font-size: 15px; font-weight: 850; }
+.ai-concierge-hotel-price small { color: #959c89; font-size: 9px; font-weight: 500; }
+.ai-concierge-hotel-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin: 0; color: #b7beaa; font-size: 8px; }
+.ai-concierge-hotel-meta svg:nth-of-type(2) { margin-left: 6px; }
+.ai-concierge-matched, .ai-concierge-missing { display: flex; align-items: flex-start; gap: 5px; margin: 0; font-size: 8px; line-height: 1.5; }
+.ai-concierge-matched { color: #c5e95b; }
+.ai-concierge-missing { color: #e4be80; }
+.ai-concierge-matched svg, .ai-concierge-missing svg { flex: 0 0 auto; margin-top: 1px; }
+.ai-concierge-hotel-actions { display: flex; gap: 8px; margin-top: 4px; }
+.ai-concierge-hotel-actions a, .ai-concierge-hotel-actions button { min-height: 33px; flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid #d4ff00; font-size: 9px; font-weight: 800; cursor: pointer; }
+.ai-concierge-hotel-actions a { background: transparent; color: #d4ff00; }
+.ai-concierge-hotel-actions button { background: #d4ff00; color: #10130f; }
+.ai-concierge-unavailable { min-height: 33px; flex: 1; display: inline-flex; align-items: center; justify-content: center; padding: 0 7px; border: 1px solid #ef997555; color: #f0ad9a; font-size: 8px; font-weight: 750; text-align: center; }
+.ai-concierge-reset { margin-left: 29px; }
+.ai-concierge-confirm h3 { margin: 0; color: #f2f4ec; font-family: Georgia, "Times New Roman", serif; font-size: 18px; font-weight: 400; }
+.ai-concierge-confirm > p:not(.ai-concierge-hint):not(.ai-concierge-notice):not(.ai-concierge-form-error) { margin: 0; color: #b6bdab; font-size: 9px; }
+.ai-concierge-confirm-total { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-top: 1px solid #ffffff20; border-bottom: 1px solid #ffffff20; color: #adb4a1; font-size: 10px; }
+.ai-concierge-confirm-total strong { color: #d4ff00; font-size: 17px; }
+.ai-concierge-payment-choice { display: grid; gap: 7px; }
+.ai-concierge-payment-choice label { display: flex; align-items: center; gap: 9px; padding: 9px; border: 1px solid #ffffff28; background: #0e110d; cursor: pointer; }
+.ai-concierge-payment-choice label.is-selected { border-color: #d4ff00; background: #d4ff000d; }
+.ai-concierge-payment-choice input { accent-color: #d4ff00; }
+.ai-concierge-payment-choice span { display: grid; gap: 3px; }
+.ai-concierge-payment-choice strong { color: #eef0e7; font-size: 9px; }
+.ai-concierge-payment-choice small { color: #aab19e; font-size: 8px; }
+.ai-concierge-success { justify-items: start; color: #d4ff00; }
+.ai-concierge-success strong { color: #eef0e7; font-size: 11px; }
+.ai-concierge-success > a { display: inline-flex; align-items: center; gap: 7px; color: #d4ff00; font-size: 10px; font-weight: 800; }
+.ai-concierge-composer { min-height: 52px; display: flex; gap: 8px; padding: 8px 12px; border-top: 1px solid #ffffff20; background: #0c0f0c; }
+.ai-concierge-composer input { flex: 1; min-width: 0; padding: 0 10px; border: 1px solid #ffffff26; background: #151912; color: #eef0e7; font-size: 10px; }
+.ai-concierge-composer input:focus { border-color: #d4ff00; outline: 1px solid #d4ff00; }
+.ai-concierge-composer button { width: 38px; display: grid; place-items: center; border: 1px solid #d4ff00; background: #d4ff00; color: #10130f; cursor: pointer; }
+.ai-concierge-composer button:disabled { opacity: .55; cursor: not-allowed; }
+.ai-concierge-footer { min-height: 30px; display: flex; align-items: center; justify-content: space-between; padding: 0 13px; background: #0c0f0c; }
+.ai-concierge-footer > span { display: inline-flex; align-items: center; gap: 6px; color: #777f6e; font-size: 8px; }
+.ai-concierge-footer button { border: 0; background: transparent; color: #939a88; font-size: 8px; cursor: pointer; }
+.ai-concierge-footer-error { margin: 0; padding: 0 13px 7px; color: #eea894; font-size: 9px; }
+
+@media (max-width: 560px) {
+  .ai-concierge-root { right: 14px; bottom: 14px; }
+  .ai-concierge-launcher { min-height: 48px; padding: 0 14px; }
+  .ai-concierge-panel { position: fixed; inset: auto 8px 72px; width: auto; height: min(760px, calc(100dvh - 94px)); min-height: 350px; }
+  .ai-concierge-transcript { padding: 12px 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-concierge-spinner { animation: none; }
+  .ai-concierge-launcher { transition: none; }
+}
