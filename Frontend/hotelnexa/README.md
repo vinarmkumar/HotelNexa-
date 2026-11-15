@@ -23,10 +23,13 @@ HotelNexa is a responsive hotel-booking application with guest/admin authenticat
 
 The Vite development server proxies `/api` requests to `http://localhost:5000`. Authentication supports email/password with email OTP verification and Google sign-in/sign-up. No mobile number or SMS provider is required.
 
-For hosted QA, configure these variables in the frontend build environment (Vite embeds `VITE_*` values into the generated site):
+For Cloudflare Pages hosted QA, configure the project with root directory `Frontend/hotelnexa`, build command `npm run build`, and output directory `dist`. Set these variables:
 
-- `VITE_API_URL`: backend HTTPS origin when the API is on a different origin; leave empty only when a same-origin reverse proxy forwards `/api` to the backend.
+- `VITE_API_URL`: leave unset. The Pages Function forwards `/api/*` to the backend on the same origin.
 - `VITE_GOOGLE_CLIENT_ID`: same Google Web client ID as backend `GOOGLE_CLIENT_ID`. Add the deployed frontend origin to that OAuth client's authorized JavaScript origins.
+- `API_ORIGIN`: set as a Pages production runtime variable to the backend HTTPS origin, for example `https://hotelnexa.onrender.com`, with no trailing slash.
+
+Set the backend `FRONTEND_ORIGINS` to the exact HTTPS Pages origin. The Pages Function uses `API_ORIGIN` only for server-side forwarding; do not put backend secrets in `VITE_*` variables.
 - `VITE_PHOTON_URL` and `VITE_OSM_TILE_URL`: optional map-provider URL overrides. Defaults use Photon place lookup and OpenStreetMap tiles; the map keeps its required OpenStreetMap attribution.
 
 Configure backend secrets separately in the host's protected environment-variable panel; do not put secrets in frontend variables. Use `NODE_ENV=production`, `PAYMENT_MODE=test`, and the exact HTTPS frontend origin in backend `FRONTEND_ORIGINS`. Razorpay Test Mode simulates payments; it does not charge or refund real money.
