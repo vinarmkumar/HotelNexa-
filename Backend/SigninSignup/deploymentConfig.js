@@ -15,6 +15,7 @@ function validateDeploymentConfig(environment = process.env) {
     "GEMINI_API_KEY",
     "RAZORPAY_KEY_ID",
     "RAZORPAY_KEY_SECRET",
+    "REDIS_URL",
   ];
   const missingVariables = requiredVariables.filter((name) => !environment[name]?.trim());
   if (missingVariables.length) {
@@ -25,6 +26,16 @@ function validateDeploymentConfig(environment = process.env) {
   }
   if (!environment.RAZORPAY_KEY_ID.startsWith("rzp_test_")) {
     throw new Error("Production QA requires a Razorpay Test Mode key ID.");
+  }
+  let redisProtocol;
+  try {
+    redisProtocol = new URL(environment.REDIS_URL).protocol;
+  } catch {
+    throw new Error("Production REDIS_URL must be a valid Redis connection URL.");
+  }
+  if (!["redis:", "rediss:"].includes(redisProtocol)
+    || (redisProtocol === "redis:" && environment.REDIS_TLS?.toLowerCase() !== "true")) {
+    throw new Error("Production Redis connections must use TLS; set REDIS_TLS=true for redis:// URLs.");
   }
 }
 

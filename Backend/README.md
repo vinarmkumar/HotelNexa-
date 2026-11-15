@@ -11,10 +11,11 @@ The booking workflow uses Razorpay **Test Mode only**. The API rejects any key I
 3. Keep `Backend/.env` out of source control. Hosting providers generally use a protected environment-variable/secrets panel rather than a checked-in `.env` file.
 4. Use MongoDB Atlas or another replica-set deployment. Reservation creation and payment confirmation use MongoDB transactions, and the API creates the unique room-night indexes before listening.
 5. For hosted QA, configure these backend environment variables:
-   - Always required: `NODE_ENV=production`, `PAYMENT_MODE=test`, `PORT` (if required by the host), `MONGO_URI`, a random `JWT_SECRET` of at least 32 characters, and the exact HTTPS `FRONTEND_ORIGINS`.
+   - Always required: `NODE_ENV=production`, `PAYMENT_MODE=test`, `PORT` (if required by the host), `MONGO_URI`, a random `JWT_SECRET` of at least 32 characters, the exact HTTPS `FRONTEND_ORIGINS`, and a TLS Redis connection in `REDIS_URL`.
    - Required for enabled integrations: `RAZORPAY_KEY_ID` beginning with `rzp_test_`, `RAZORPAY_KEY_SECRET`, `BREVO_API_KEY`, verified `BREVO_SENDER_EMAIL`, `GOOGLE_CLIENT_ID`, and `GEMINI_API_KEY`.
    - Optional, only for the image-upload script: `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, and `CLOUDINARY_API_SECRET`.
    The backend checks the production settings at startup and refuses live Razorpay keys. Live payments are not supported.
+   The AI Concierge shares its 20-requests-per-minute-per-IP rate limit through Redis. For providers that return a `redis://` URL with TLS enabled separately (such as Upstash), set `REDIS_TLS=true`; `rediss://` URLs enable TLS automatically. Production rejects unencrypted Redis connections. Booking inventory and room-night locks remain protected by MongoDB transactions.
 6. Configure the frontend build variables as described in `Frontend/hotelnexa/.env.example`; `VITE_GOOGLE_CLIENT_ID` must match `GOOGLE_CLIENT_ID`, and the deployed origin must also be authorized in Google Cloud Console.
 7. Seed the hotel-admin accounts and initial room inventory:
 

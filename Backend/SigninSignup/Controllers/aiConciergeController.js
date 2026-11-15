@@ -2,28 +2,27 @@ const {
   interpretConciergeMessage,
   searchAvailableHotels,
 } = require("../Services/aiConciergeService");
+const { isAiConciergeRequestAllowed } = require("../Services/aiConciergeRateLimiter");
 
-const requestWindowMs = 60_000;
-const requestLimit = 20;
-const requestsByClient = new Map();
-
-function applyRateLimit(req, res) {
-  const now = Date.now();
+async function applyRateLimit(req, res) {
   const client = req.ip || req.socket.remoteAddress || "unknown";
-  const recent = (requestsByClient.get(client) || []).filter((timestamp) => now - timestamp < requestWindowMs);
-  if (recent.length >= requestLimit) {
+  try {
+    if (await isAiConciergeRequestAllowed(client)) return null;
     return res.status(429).json({
       success: false,
       message: "Too many concierge requests. Please wait a minute and try again.",
     });
+  } catch (error) {
+    console.error("AI Concierge rate limiting is unavailable.");
+    return res.status(503).json({
+      success: false,
+      message: "The AI concierge is temporarily unavailable. Please try again shortly.",
+    });
   }
-  recent.push(now);
-  requestsByClient.set(client, recent);
-  return null;
 }
 
 exports.interpret = async (req, res) => {
-  const limited = applyRateLimit(req, res);
+  const limited = await applyRateLimit(req, res);
   if (limited) return limited;
   try {
     const preferences = await interpretConciergeMessage(req.body?.message);
@@ -38,7 +37,7 @@ exports.interpret = async (req, res) => {
 };
 
 exports.search = async (req, res) => {
-  const limited = applyRateLimit(req, res);
+  const limited = await applyRateLimit(req, res);
   if (limited) return limited;
   try {
     const result = await searchAvailableHotels(req.body);

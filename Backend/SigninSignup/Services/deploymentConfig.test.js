@@ -16,6 +16,8 @@ test("production hosting is permitted only with explicit Test Mode", () => {
     GEMINI_API_KEY: "gemini-test-key",
     RAZORPAY_KEY_ID: "rzp_test_demo",
     RAZORPAY_KEY_SECRET: "razorpay-test-secret",
+    REDIS_URL: "redis://default:redis-test-secret@redis.example.com:6379",
+    REDIS_TLS: "true",
   };
   assert.doesNotThrow(() => validateDeploymentConfig(completeProductionConfig));
   assert.throws(() => validateDeploymentConfig({ NODE_ENV: "production" }), /PAYMENT_MODE=test/);
@@ -32,6 +34,10 @@ test("production hosting is permitted only with explicit Test Mode", () => {
     ...completeProductionConfig,
     RAZORPAY_KEY_ID: "rzp_live_not-allowed",
   }), /Test Mode key/);
+  assert.throws(() => validateDeploymentConfig({
+    ...completeProductionConfig,
+    REDIS_TLS: "false",
+  }), /must use TLS/);
 });
 
 test("Razorpay accepts only test credentials and rejects live mode", () => {

@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node SigninSignup/index.js",
     "dev": "nodemon --watch .env --watch SigninSignup SigninSignup/index.js",
-    "test": "node --test SigninSignup/Controllers/reservationController.test.js SigninSignup/Services/deploymentConfig.test.js",
+    "test": "node --test SigninSignup/Controllers/reservationController.test.js SigninSignup/Services/deploymentConfig.test.js SigninSignup/Services/aiConciergeRateLimiter.test.js",
     "seed:hotel-admins": "node scripts/seedHotelAdmins.js",
     "seed:hotel-rooms": "node scripts/seedHotelRooms.js",
     "upload:hotel-images": "node scripts/uploadHotelImages.js"
@@ -18,6 +18,7 @@
     "google-auth-library": "^11.3.4",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.12.0",
-    "nodemon": "^3.1.14"
+    "nodemon": "^3.1.14",
+    "redis": "^6.3.1"
   }
 }

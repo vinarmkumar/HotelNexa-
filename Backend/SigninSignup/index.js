@@ -13,6 +13,7 @@ const aiRoutes = require("./Routes/aiRoutes");
 const { startPendingCancellationReconciliation } = require("./Controllers/reservationController");
 const { corsOrigin, validateFrontendOrigins } = require("./corsConfig");
 const { validateDeploymentConfig } = require("./deploymentConfig");
+const { initializeAiConciergeRateLimiter } = require("./Services/aiConciergeRateLimiter");
 
 const app = express();
 app.disable("x-powered-by");
@@ -39,6 +40,7 @@ async function startServer() {
   }
   validateDeploymentConfig();
   validateFrontendOrigins();
+  await initializeAiConciergeRateLimiter();
   await connectDatabase();
   await Promise.all([
     Reservation.init(),
