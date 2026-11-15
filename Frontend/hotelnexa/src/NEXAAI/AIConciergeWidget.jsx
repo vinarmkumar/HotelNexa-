@@ -388,6 +388,7 @@ export default function AIConciergeWidget() {
     try {
       const orderResult = await createReservationOrder({
         hotelId: selectedHotel.id,
+        roomTypeId: selectedHotel.roomTypeId,
         checkIn: selectedHotel.checkIn,
         checkOut: selectedHotel.checkOut,
         adults: selectedHotel.adults,
