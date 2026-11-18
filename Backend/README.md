@@ -99,6 +99,17 @@ Each account uses the hotel-folder slug as its login email (for example, `hotel_
 
 Hotel administrators select **Hotel / administrator** at sign-in and can open the hotel dashboard directly. Email OTP is not used for this provisioning flow. The hotel dashboard and API derive the property ID from the authenticated account; hotel admins can see reservation and guest contact details for their own property only. The dashboard reflects HotelNexa's illustrative/test bookings, not a live property management system.
 
+## Local demo guest
+
+For local assessment demos only, provision a fixed guest account after configuring the local database:
+
+```powershell
+cd Backend
+npm run seed:demo-guest
+```
+
+Sign in as a guest with `demo.guest@hotelnexa.test` and password `NexaGuest2026!`. The seeder refuses to run when `NODE_ENV=production`; the shared credential is public demo data and must never be enabled for a production account. Guest booking data is whatever exists in the configured local database.
+
 ## Reservation controller layout
 
 - `reservationBookingController.js` handles booking checkout, payment verification, and confirmation-email retries.

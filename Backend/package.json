@@ -8,6 +8,7 @@
     "test": "node --test SigninSignup/Controllers/reservationController.test.js SigninSignup/Services/deploymentConfig.test.js SigninSignup/Services/aiConciergeRateLimiter.test.js",
     "seed:hotel-admins": "node scripts/seedHotelAdmins.js",
     "seed:hotel-rooms": "node scripts/seedHotelRooms.js",
+    "seed:demo-guest": "node scripts/seedDemoGuest.js",
     "upload:hotel-images": "node scripts/uploadHotelImages.js"
   },
   "dependencies": {
