@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ArrowLeft, ArrowRight, Check, KeyRound, Mail, ShieldCheck } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import authArtwork from "../Images/signinsignupbg.png";
-import { apiRequest } from "../../api.js";
+import { apiRequest, waitForApiReady } from "../../api.js";
 import PasswordRequirements from "./PasswordRequirements.jsx";
 import { isPasswordValid } from "../passwordPolicy.js";
 import GoogleAutoSignin from "../../Googleautosignin/GoogleAutoSignin.jsx";
@@ -34,6 +34,7 @@ export default function SignIn() {
     setBusy(true);
     setMessage("");
     try {
+      await waitForApiReady();
       const data = await apiRequest("/api/auth/google", { method: "POST", body: { credential } });
       navigateAfterSignin(data.user);
     } catch (error) {
@@ -50,6 +51,7 @@ export default function SignIn() {
     setMessage("");
     try {
       if (step === "credentials") {
+        await waitForApiReady();
         const data = await apiRequest("/api/auth/signin", {
           method: "POST",
           body: { email, password, adminLogin },

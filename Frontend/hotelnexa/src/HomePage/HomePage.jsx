@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { ArrowDown, ArrowRight, LogOut, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
-import { apiRequest } from "../api.js";
+import { apiRequest, waitForApiReady } from "../api.js";
 import StayDiscovery from "./StayDiscovery.jsx";
 import homeArtwork from "./img/HomePagebg.png";
 import logo from "./img/WebsiteLogo.png";
+
+async function getCurrentUser() {
+  await waitForApiReady();
+  return apiRequest("/api/auth/me");
+}
 
 export default function HomePage() {
   const [user, setUser] = useState(null);
@@ -18,12 +23,19 @@ export default function HomePage() {
   }
 
   useEffect(() => {
-    apiRequest("/api/auth/me")
-      .then((data) => setUser(data.user))
+    let active = true;
+    getCurrentUser()
+      .then((data) => {
+        if (active) setUser(data.user);
+      })
       .catch((error) => {
+        if (!active) return;
         setUser(null);
         if (error.status !== 401) setNotice("We couldn’t verify your session. Some account features may be unavailable.");
-      })
+      });
+    return () => {
+      active = false;
+    };
   }, []);
 
   async function signOut() {
